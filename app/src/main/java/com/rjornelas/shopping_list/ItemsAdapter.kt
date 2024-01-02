@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rjornelas.shopping_list.model.ItemModel
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHold>() {
-    private val	items = mutableListOf<ItemModel>()
+    private var	items = listOf<ItemModel>()
 
     class ItemViewHold(view: View) : RecyclerView.ViewHolder(view) {
         private val	textView = view.findViewById<TextView>(R.id.tvItem)
@@ -23,13 +23,8 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHold>() {
         }
     }
 
-    fun	addItem(newItem: ItemModel)	{
-        items.add(newItem)
-        notifyDataSetChanged()
-    }
-
-    fun	removeItem(item: ItemModel)	{
-        items.remove(item)
+    fun	updateItems(newItems: List<ItemModel>)	{
+        items = newItems
         notifyDataSetChanged()
     }
 
