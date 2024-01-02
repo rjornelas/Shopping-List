@@ -17,11 +17,28 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = itemsAdapter
 
         val	button = findViewById<Button>(R.id.btnRegister)
-        val	editText = findViewById<EditText>(R.id.edNewItem)
+        val	edNewItem = findViewById<EditText>(R.id.edNewItem)
+
 
         button.setOnClickListener	{
-            val item = ItemModel(editText.text.toString())
+            val edNewItemText = edNewItem.text
+
+            if (validateEmptyValue(edNewItem)) return@setOnClickListener
+
+            val item = ItemModel(
+                edNewItem.text.toString()
+            )
+
             itemsAdapter.addItem(item)
+            edNewItemText.clear()
         }
+    }
+
+    private fun validateEmptyValue(edNewItem: EditText): Boolean {
+        if (edNewItem.text.isEmpty()) {
+            edNewItem.error = "The item name must not be empty"
+            return true
+        }
+        return false
     }
 }
