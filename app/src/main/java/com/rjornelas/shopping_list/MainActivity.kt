@@ -26,9 +26,11 @@ class MainActivity : AppCompatActivity() {
             if (validateEmptyValue(edNewItem)) return@setOnClickListener
 
             val item = ItemModel(
-                edNewItem.text.toString()
+                edNewItem.text.toString(),
+                onRemove = {
+                    itemsAdapter.removeItem(it)
+                }
             )
-
             itemsAdapter.addItem(item)
             edNewItemText.clear()
         }
