@@ -11,7 +11,9 @@ import com.rjornelas.shopping_list.model.ItemsViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val	viewModel: ItemsViewModel by viewModels()
+    private val	viewModel: ItemsViewModel by viewModels	{
+        ItemsViewModelFactory(applicationContext)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

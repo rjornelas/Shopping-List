@@ -2,23 +2,39 @@ package com.rjornelas.shopping_list.model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.rjornelas.shopping_list.data.ItemEntity
+import com.rjornelas.shopping_list.data.ItemsDatabase
+import com.rjornelas.shopping_list.data.toModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ItemsViewModel(
-    private var items: MutableList<ItemModel> = mutableListOf(),
-
+    private val	database: ItemsDatabase
 ) : ViewModel() {
 
-    fun	addItem(name: String) {
-        val	item = ItemModel(name =	name, onRemove = ::removeItem)
-        items.add(item)
-        itemsLiveData.value	= items
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            fetchAll()
+        }
     }
 
-    private fun	removeItem(item: ItemModel)	{
-        items.remove(item)
-        itemsLiveData.value	= items
+    val itemsLiveData = MutableLiveData<List<ItemModel>>()
+
+    fun addItem (name: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            val	entity = ItemEntity(id = 0,	name = name)
+            database.itemsDao().insert(entity)
+            fetchAll()
+        }
     }
 
-    val	itemsLiveData = MutableLiveData<List<ItemModel>>()
+    private suspend fun	fetchAll()	{
+        val	result = database.itemsDao().getAll().map {
+            it.toModel(onRemove	= {})
+        }
+        itemsLiveData.postValue(result)
+    }
+
 
 }
