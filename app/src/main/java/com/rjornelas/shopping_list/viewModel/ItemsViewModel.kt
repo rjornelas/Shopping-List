@@ -1,4 +1,4 @@
-package com.rjornelas.shopping_list.model
+package com.rjornelas.shopping_list.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.rjornelas.shopping_list.data.ItemEntity
 import com.rjornelas.shopping_list.data.ItemsDatabase
 import com.rjornelas.shopping_list.data.toModel
+import com.rjornelas.shopping_list.model.ItemModel
+import com.rjornelas.shopping_list.model.toEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

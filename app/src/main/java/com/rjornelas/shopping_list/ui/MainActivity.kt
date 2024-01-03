@@ -1,4 +1,4 @@
-package com.rjornelas.shopping_list
+package com.rjornelas.shopping_list.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,8 +6,9 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.rjornelas.shopping_list.model.ItemModel
-import com.rjornelas.shopping_list.model.ItemsViewModel
+import com.rjornelas.shopping_list.R
+import com.rjornelas.shopping_list.viewModel.ItemsViewModel
+import com.rjornelas.shopping_list.viewModel.ItemsViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 

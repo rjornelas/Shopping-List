@@ -1,11 +1,10 @@
-package com.rjornelas.shopping_list
+package com.rjornelas.shopping_list.viewModel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import com.rjornelas.shopping_list.data.ItemsDatabase
-import com.rjornelas.shopping_list.model.ItemsViewModel
 
 class ItemsViewModelFactory(
     private val	applicationContext: Context
